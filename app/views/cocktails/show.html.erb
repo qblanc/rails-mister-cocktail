@@ -24,6 +24,9 @@
         <% end %>
     </tbody>
   </table>
+  <br>
+  <h3>Instructions</h3>
+  <%= @cocktail.description %>
   <br><br>
   <h3>Add a new dose</h3>
     <%= simple_form_for [@cocktail, @dose], :html => {class: "col-sm-12 col-lg-8"} do |f| %>
