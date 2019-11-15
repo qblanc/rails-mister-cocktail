@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Add a new cocktail</h1>
+  <%= simple_form_for @cocktail, :html => {class: "col-sm-12 col-lg-8"} do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit, class: "btn btn-success" %>
+  <% end %>
+</div>

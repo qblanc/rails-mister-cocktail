@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-end mt-2 col-sm-12 col-lg-8">
+  <h1><%= @cocktail.name %></h1>
+  <%= image_tag "https://source.unsplash.com/900x900/?#{@cocktail.name}", class: "avatar-xlarge" %>
+  </div>
+  <br>
+  <table class="table table-bordered col-sm-12 col-lg-8 text-center">
+    <thead>
+      <tr>
+          <th scope="col">Ingredients</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cocktail.doses.each do |dose| %>
+        <tr>
+            <th scope="row"><%= dose.ingredient.name %></th>
+            <td><%= dose.description %></td>
+            <td><%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br><br>
+  <h3>Add a new dose</h3>
+    <%= simple_form_for [@cocktail, @dose], :html => {class: "col-sm-12 col-lg-8"} do |f| %>
+      <%= f.association :ingredient, class: 'select2' %>
+      <%= f.input :description %>
+      <%= f.button :submit, class: 'btn btn-success' %>
+    <% end %>
+    <br>
+</div>
+
+<%# #     Checkout simple_form docs about f.association to easily create a select dropdown for our list of ingredients. %>
