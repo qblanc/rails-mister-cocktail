@@ -3,11 +3,9 @@
       <% @cocktails.each do |cocktail| %>
         <%= link_to cocktail_path(cocktail) do %>
           <div class="card-grid card-shadow">
-<div class="grid-box">
-            <%# <div class="card-box"> %>
+            <div class="grid-box">
               <%= image_tag "https://source.unsplash.com/900x900/?#{cocktail.name}", class: "grid-pic" %>
               <h5 class="my-card d-inline-block"><%= cocktail.name %></h5>
-            <%# </div> %>
           </div>
 </div>
         <% end %>
