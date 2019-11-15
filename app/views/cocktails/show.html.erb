@@ -27,9 +27,9 @@
   <br><br>
   <h3>Add a new dose</h3>
     <%= simple_form_for [@cocktail, @dose], :html => {class: "col-sm-12 col-lg-8"} do |f| %>
-      <%= f.association :ingredient, class: 'select2' %>
+      <%= f.association :ingredient, input_html: { class: 'select2' } %>
       <%= f.input :description %>
-      <%= f.button :submit, class: 'btn btn-success' %>
+      <%= f.button :submit, class: 'btn-success' %>
     <% end %>
     <br>
 </div>
