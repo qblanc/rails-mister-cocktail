@@ -40,7 +40,6 @@ puts 'Creating cocktails'
       ingredients = []
       quantity = []
       (1..15).to_a.each do |ref|
-        puts cocktail["strIngredient#{ref}"]
         if cocktail["strIngredient#{ref}"].nil?
           next
         elsif Ingredient.find_by_name(cocktail["strIngredient#{ref}"].gsub("'", "").titleize).nil?
@@ -54,7 +53,6 @@ puts 'Creating cocktails'
           end
         end
       end
-      puts ingredients
       ingredients.each_with_index do |ingredient, index|
         Dose.create!(ingredient_id: ingredient.id, cocktail_id: cock.id, quantity: quantity[index])
       end

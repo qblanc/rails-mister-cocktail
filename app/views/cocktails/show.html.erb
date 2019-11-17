@@ -9,7 +9,6 @@
       <tr>
           <th scope="col">Ingredients</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -17,9 +16,6 @@
         <tr>
             <th scope="row"><%= dose.ingredient.name %></th>
             <td><%= dose.quantity %></td>
-            <td><%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
-          <i class="far fa-trash-alt"></i>
-          <% end %></td>
         </tr>
         <% end %>
     </tbody>
@@ -28,13 +24,10 @@
   <h3>Instructions</h3>
   <%= @cocktail.description %>
   <br><br>
-  <h3>Add a new dose</h3>
-    <%= simple_form_for [@cocktail, @dose], :html => {class: "col-sm-12 col-lg-8"} do |f| %>
-      <%= f.association :ingredient, input_html: { class: 'select2' } %>
-      <%= f.input :quantity %>
-      <%= f.button :submit, class: 'btn-success' %>
-    <% end %>
-    <br>
+  <%= link_to edit_cocktail_path do %>
+    <button type="button" class="btn btn-outline-success col-sm-12 col-lg-8">Edit cocktail</button>
+  <% end %>
+  <br><br>
 </div>
 
 <%# #     Checkout simple_form docs about f.association to easily create a select dropdown for our list of ingredients. %>

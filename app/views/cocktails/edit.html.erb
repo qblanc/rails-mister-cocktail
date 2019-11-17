@@ -1,0 +1,52 @@
+<div class="container">
+<br>
+  <%= link_to cocktail_path(@cocktail) do %>
+    <button type="button" class="btn btn-outline-success col-sm-12 col-lg-8">Back to cocktail</button>
+  <% end %>
+  <br><br>
+  <div class="d-flex justify-content-between align-items-center mt-2 col-sm-12 col-lg-8">
+  <h1><%= @cocktail.name %></h1>
+  <%= image_tag "https://source.unsplash.com/900x900/?#{@cocktail.name}", class: "avatar-xlarge" %>
+  </div>
+  <%= simple_form_for [@cocktail], url: cocktail_path, method: :patch, :html => {class: "col-sm-12 col-lg-8"} do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.button :submit, 'Update name & description', class: 'btn-success' %>
+  <% end %>
+  <br>
+  <table class="table table-bordered col-sm-12 col-lg-8 text-center">
+    <thead>
+      <tr>
+          <th scope="col">Ingredients</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cocktail.doses.each do |dose| %>
+        <tr>
+            <th scope="row"><%= dose.ingredient.name %></th>
+            <td><%= dose.quantity %></td>
+            <td><%= link_to dose_path(dose), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="far fa-trash-alt"></i>
+          <% end %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <h3>Add a new dose</h3>
+    <%= simple_form_for [@cocktail, @dose], :html => {class: "col-sm-12 col-lg-8"} do |f| %>
+      <%= f.association :ingredient, input_html: { class: 'select2' } %>
+      <%= f.input :quantity %>
+      <%= f.button :submit, class: 'btn-success' %>
+    <% end %>
+  <br><br>
+    <%= link_to cocktail_path(@cocktail), method: :delete, :data => {:confirm => 'Are you sure?'} do %>
+    <button type="button" class="btn btn-outline-danger col-sm-12 col-lg-8">Delete cocktail</button>
+  <% end %>
+  <br><br>
+  <%= link_to cocktail_path(@cocktail) do %>
+    <button type="button" class="btn btn-outline-success col-sm-12 col-lg-8">Back to cocktail</button>
+  <% end %>
+  <br><br>
+</div>
